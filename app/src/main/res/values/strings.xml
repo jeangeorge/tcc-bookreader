@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">BookReader</string>
+    <string name="app_desc">BookReader é o seu assistente pessoal de leitura! Escaneie textos diretamente da câmera do seu celular!</string>
+    <string name="app_plataforma">para Android</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_sobre">Sobre</string>
+    <string name="app_vrs">Versão</string>
+    <string name="vatual">1.0.0.10</string>
+    <string name="site">Acesse nosso website.</string>
+    <string name="hint_menu">Selecione abaixo uma opção a ser executada</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">E-mail</string>
+    <string name="prompt_password">Senha</string>
+    <string name="action_sign_in">Entrar</string>
+    <string name="action_sign_in_short">Entrar</string>
+    <string name="error_invalid_email">E-mail inválido!</string>
+    <string name="error_invalid_password">Senha muito curta!</string>
+    <string name="error_incorrect_password">Senha incorreta!</string>
+    <string name="error_field_required">Campo obrigatório</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="menu_string">Sobre</string>
+    <string name="cadastrar">cadastrar</string>
+    <string name="title_activity_cadastro">Cadastro</string>
+</resources>

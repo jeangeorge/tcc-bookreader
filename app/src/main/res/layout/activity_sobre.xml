@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.jean.bookreader.SobreActivity"
+    android:background="#009688">
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="48sp"
+        android:id="@+id/nome"
+        android:textColor="#fff"
+        android:textAlignment="center"
+        android:paddingLeft="30dp"
+        android:textStyle="bold"
+        android:text="@string/app_name"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="45sp"
+        android:id="@+id/text"
+        android:textColor="#fff"
+        android:textAlignment="center"
+        android:paddingLeft="30dp"
+        android:text="@string/app_plataforma"
+        android:layout_below="@+id/nome"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:id="@+id/vrs"
+        android:textColor="#cccccc"
+        android:textAlignment="center"
+        android:paddingTop="45dp"
+        android:paddingLeft="30dp"
+        android:text="@string/app_vrs"
+        android:layout_below="@+id/text"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:id="@+id/v"
+        android:textColor="#fff"
+        android:textAlignment="center"
+        android:paddingLeft="30dp"
+        android:text="@string/vatual"
+        android:layout_below="@+id/vrs"/>
+
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:id="@+id/about"
+        android:textColor="#cccccc"
+        android:paddingTop="10dp"
+        android:paddingLeft="30dp"
+        android:text="@string/app_desc"
+        android:layout_below="@+id/v"/>
+
+
+    <TextView
+      android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:linksClickable="true"
+        android:onClick="abreSite"
+        android:text="@string/site"
+        android:layout_below="@+id/about"
+        android:paddingTop="10dp"
+        android:paddingLeft="30sp"
+        android:textColor="#fff"
+        android:textSize="20sp"/>
+
+</RelativeLayout>
