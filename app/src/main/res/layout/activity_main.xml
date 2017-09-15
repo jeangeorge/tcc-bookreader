@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/botao"
             android:onClick="login"
-            android:text="Começar Agora"
+            android:text="Vsf Jean seu pnc"
             android:textColor="#FFFFFF"
             android:padding="10dp"
             android:layout_marginTop="40dp"
