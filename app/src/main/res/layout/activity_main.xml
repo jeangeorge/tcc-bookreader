@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/botao"
             android:onClick="login"
-            android:text="Vsf Jean seu pnc 2"
+            android:text="Vsf Jean seu pnc 3"
             android:textColor="#FFFFFF"
             android:padding="10dp"
             android:layout_marginTop="40dp"
