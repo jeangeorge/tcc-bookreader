@@ -123,11 +123,6 @@ public class CameraActivity extends AppCompatActivity {
             super.onCaptureCompleted(session, request, result);
             Toast.makeText(CameraActivity.this, "Saved:" + file, Toast.LENGTH_SHORT).show();
             createCameraPreview();
-
-
-
-
-
         }
     };
     protected void startBackgroundThread() {
