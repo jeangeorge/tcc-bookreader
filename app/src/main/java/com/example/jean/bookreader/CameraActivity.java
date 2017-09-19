@@ -189,17 +189,14 @@ public class CameraActivity extends AppCompatActivity {
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(CameraActivity.this);
 
-                    Bitmap resized = Bitmap.createScaledBitmap(bitmap,(int)(bitmap.getWidth()*0.9), (int)(bitmap.getHeight()*0.9), true);
+                    Bitmap resized = Bitmap.createScaledBitmap(bitmap,(int)(bitmap.getWidth()*0.5), (int)(bitmap.getHeight()*0.5), true);
                     leitor.setImagem(resized);
                     builder.setMessage("Esse é o texto não ordenado: " + leitor.reconhecer())
                             .setNegativeButton("OK", null)
                             .create()
                             .show();
 
-                    builder.setMessage("Esse é o texto ordenado:" + leitor.reconhecer2())
-                            .setNegativeButton("OK", null)
-                            .create()
-                            .show();
+
                     leitor.Ler();
 
                     createCameraPreview();
