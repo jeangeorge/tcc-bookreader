@@ -55,7 +55,7 @@ public class Leitor {
     }
     public void Ler()
     {
-        narrador.speak(reconhecer2(),TextToSpeech.QUEUE_FLUSH,null);
+        narrador.speak(reconhecer(),TextToSpeech.QUEUE_FLUSH,null);
     }
 
     public void Zerar()
