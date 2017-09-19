@@ -14,8 +14,6 @@ import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
@@ -23,12 +21,21 @@ import java.util.Locale;
  * Created by Gabriel on 07/09/2017.
  */
 
-
+//Essa é a classe que lê, identifica e corrige o texto
 public class Leitor {
+    //Imagem que vai ser reconhecida
     public Bitmap imagem;
+
+    //Objeto que faz o reconhecimento do texto
     private TextRecognizer teste;
+
+    //Objeto que le o texto com uma voz sintetizada
     private TextToSpeech narrador;
+
+    //Lista de blocos de texto
     List<TextBlock> blocos;
+
+    List<String> blocosProntos;
 
     public void setImagem(Bitmap imagem)
     {
@@ -38,7 +45,11 @@ public class Leitor {
     public Leitor(Context ctx)
     {
         teste = new TextRecognizer.Builder(ctx).build();
+
         blocos = new ArrayList<TextBlock>();
+
+        blocosProntos = new ArrayList<String>();
+
         narrador = new TextToSpeech(ctx, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
@@ -53,42 +64,54 @@ public class Leitor {
         });
 
     }
-    public void Ler()
+
+    //Método que lê o que estiver na lista com a voz do narrador
+    public void LerImagem()
     {
-        narrador.speak(reconhecer(),TextToSpeech.QUEUE_FLUSH,null);
+        Reconhecer();
+        Ordenar();
+        Corrigir();
+        narrador.speak(getTexto(),TextToSpeech.QUEUE_FLUSH,null);
     }
 
+    //Lê uma String
+    public void Ler(String palavra)
+    {
+        narrador.speak(palavra,TextToSpeech.QUEUE_FLUSH,null);
+    }
+
+    //Método que lê pdf
+    public void LerPDF()
+    {
+
+    }
+
+
+    //Apaga todos os blocos de texto que estão armazenados
     public void Zerar()
     {
         blocos.clear();
     }
 
-    public void Ordenar()
+    //Nesse método todos os blocos de texto devem ser ordenados
+    private void Ordenar()
     {
-        Collections.sort(blocos, new Comparator() {
-            @Override
-            public int compare(Object o1, Object o2) {
-                TextBlock p1 = (TextBlock) o1;
-                TextBlock p2 = (TextBlock) o2;
 
-                return calculaDistancia(p1) < calculaDistancia(p2) ? -1 : (calculaDistancia(p1) > calculaDistancia(p1) ? +1 : 0);
-            }
-        });
+
+
     }
 
-    private double calculaDistancia(TextBlock obj)
+    //Esse método corrige o texto para posterior leitura
+    private void Corrigir()
     {
-       return Math.sqrt( Math.pow( (obj.getBoundingBox().left - 0),2 ) +
-                Math.pow( (obj.getBoundingBox().top - 0),2 ) );
+
     }
 
 
-
-    public String reconhecer()
+    public void Reconhecer()
     {
         Frame outputFrame = new Frame.Builder().setBitmap(imagem).build();
         SparseArray<TextBlock>items = teste.detect(outputFrame);
-        String a = "";
         if(items.size() != 0)
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -100,11 +123,11 @@ public class Leitor {
                 stringBuilder.append(item.getValue());
                 stringBuilder.append("\n");
             }
-            a = stringBuilder.toString();
         }
-        return a;
     }
-    public String reconhecer2()
+
+
+    public String getTexto()
     {
         Ordenar();
         String a = "";
