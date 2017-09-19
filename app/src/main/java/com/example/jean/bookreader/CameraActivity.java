@@ -192,17 +192,17 @@ public class CameraActivity extends AppCompatActivity {
 
                     Bitmap resized = Bitmap.createScaledBitmap(bitmap,(int)(bitmap.getWidth()*0.5), (int)(bitmap.getHeight()*0.5), true);
                     leitor.setImagem(resized);
-                    builder.setMessage("Esse é o texto não ordenado: " + " s"/*leitor.reconhecer()*/)
+                    builder.setMessage("Esse é o texto ordenado: " + leitor.reconhecer())
                             .setNegativeButton("OK", null)
                             .create()
                             .show();
 
 
-                    leitor.LerImagem();
+                    leitor.Ler();
 
                     createCameraPreview();
                     if (image != null) {
-                            image.close();
+                        image.close();
                     }
 
                 }
