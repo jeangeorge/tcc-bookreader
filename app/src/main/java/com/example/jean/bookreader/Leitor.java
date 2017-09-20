@@ -80,12 +80,6 @@ public class Leitor {
         narrador.speak(palavra,TextToSpeech.QUEUE_FLUSH,null);
     }
 
-    //Método que lê pdf
-    public void LerPDF()
-    {
-
-    }
-
 
     //Apaga todos os blocos de texto que estão armazenados
     public void Zerar()
