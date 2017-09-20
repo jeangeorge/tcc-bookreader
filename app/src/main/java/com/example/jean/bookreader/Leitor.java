@@ -13,6 +13,7 @@ import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -42,8 +43,7 @@ public class Leitor {
         this.imagem = imagem;
     }
 
-    public Leitor(Context ctx)
-    {
+    public Leitor(Context ctx) throws IOException {
         teste = new TextRecognizer.Builder(ctx).build();
 
         blocos = new ArrayList<TextBlock>();
@@ -62,6 +62,11 @@ public class Leitor {
                 }
             }
         });
+//        ParcelFileDescriptor file = new ParcelFileDescriptor();
+
+  //      PdfRenderer renderer = new PdfRenderer(file);
+    //    renderer.openPage().render();
+
 
     }
 
