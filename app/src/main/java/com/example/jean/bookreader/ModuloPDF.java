@@ -17,9 +17,11 @@ public class ModuloPDF {
     //Armazena o número da página atual do pdf
     private int paginaAtual = 0;
 
+    //Caminho do pdf
     private String pathArquivo;
 
     private int totalPaginas = 0;
+
     public ModuloPDF(String path)
     {
         pathArquivo = path;
@@ -34,6 +36,9 @@ public class ModuloPDF {
 
             //Pega a pagina atual
             PdfRenderer.Page pag = renderer.openPage(paginaAtual);
+
+            //Seta o total de páginas
+            totalPaginas = renderer.getPageCount();
 
             //Cria um bitmap do tamanho da pagina
             Bitmap bitmap = Bitmap.createBitmap(pag.getWidth(), pag.getHeight(), Bitmap.Config.ARGB_4444);
@@ -65,5 +70,20 @@ public class ModuloPDF {
         }
     }
 
+    public Bitmap getImagem() {
+        return imagem;
+    }
 
+    public int getPaginaAtual() {
+        return paginaAtual;
+    }
+
+    public int getTotalPaginas() {
+        return totalPaginas;
+    }
+
+    public void setPaginaAtual(int paginaAtual) {
+        if(paginaAtual >-1 && paginaAtual < totalPaginas)
+            this.paginaAtual = paginaAtual;
+    }
 }
