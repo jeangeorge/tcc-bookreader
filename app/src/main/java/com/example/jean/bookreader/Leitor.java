@@ -62,11 +62,6 @@ public class Leitor {
                 }
             }
         });
-//        ParcelFileDescriptor file = new ParcelFileDescriptor();
-
-  //      PdfRenderer renderer = new PdfRenderer(file);
-    //    renderer.openPage().render();
-
 
     }
 
@@ -141,5 +136,10 @@ public class Leitor {
             a+=blocos.get(i).getValue() + "\n";
         }
         return a;
+    }
+
+    public void pararLeitura()
+    {
+        narrador.stop();
     }
 }
