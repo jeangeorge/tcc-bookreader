@@ -46,6 +46,8 @@ public class ModuloPDF {
 
             //Passa a página para a imagem
             pag.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
+
+            imagem = bitmap;
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -29,5 +29,10 @@ public class MenuActivity extends AppCompatActivity  {
         Intent camera = new Intent(this, CameraActivity.class);
         startActivity(camera);
     }
+    public void startPdf(View v)
+    {
+        Intent pdf = new Intent(this, PDFReaderActivity.class);
+        startActivity(pdf);
+    }
 }
 
