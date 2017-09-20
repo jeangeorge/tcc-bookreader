@@ -11,14 +11,6 @@
     tools:context="com.example.jean.bookreader.LoginActivity">
 
     <!-- Login progress -->
-    <ProgressBar
-        android:id="@+id/login_progress"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:visibility="gone" />
-
     <ScrollView
         android:id="@+id/login_form"
         android:layout_width="match_parent"
@@ -33,22 +25,21 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:src="@drawable/icone_login"
+                android:id="@+id/imageView4"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="30dp"
-                />
+                android:src="@drawable/logo1" />
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                >
+                android:layout_gravity="center">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="25dp"
 
                     >
 
@@ -62,11 +53,11 @@
                         android:id="@+id/email"
                         android:layout_width="250dp"
                         android:layout_height="35dp"
+                        android:layout_marginLeft="5dp"
                         android:background="@drawable/edittext"
                         android:hint="@string/prompt_email"
                         android:inputType="textEmailAddress"
                         android:maxLines="1"
-                        android:layout_marginLeft="5dp"
                         android:paddingLeft="5dp" />
                 </LinearLayout>
 
@@ -76,13 +67,13 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                >
+                android:layout_gravity="center">
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="25dp"
                     android:layout_marginTop="10dp">
 
                     <ImageView
@@ -94,6 +85,7 @@
                         android:id="@+id/password"
                         android:layout_width="250dp"
                         android:layout_height="35dp"
+                        android:layout_marginLeft="5dp"
                         android:background="@drawable/edittext"
                         android:hint="@string/prompt_password"
                         android:imeActionId="@+id/login"
@@ -101,9 +93,7 @@
                         android:imeOptions="actionUnspecified"
                         android:inputType="textPassword"
                         android:maxLines="1"
-                        android:paddingLeft="5dp"
-                        android:layout_marginLeft="5dp"
-                        />
+                        android:paddingLeft="5dp" />
                 </LinearLayout>
 
             </android.support.design.widget.TextInputLayout>
@@ -113,35 +103,52 @@
                 style="?android:textAppearanceSmall"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/action_sign_in"
-                android:textStyle="bold"
-                android:background="@drawable/botao"
-                android:textColor="#FFFFFF"
                 android:layout_gravity="center"
+                android:background="@drawable/botao"
+                android:text="@string/action_sign_in"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
 
                 />
+
             <Button
                 android:id="@+id/cadastrar"
                 style="?android:textAppearanceSmall"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/cadastrar"
-                android:textStyle="bold"
-                android:background="@drawable/botao"
-                android:textColor="#FFFFFF"
-                android:onClick="showCadastro"
                 android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/botao"
+                android:onClick="showCadastro"
+                android:text="@string/cadastrar"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
 
                 />
 
+
             <Button
                 android:id="@+id/button3"
-                android:layout_width="match_parent"
+                style="?android:textAppearanceSmall"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:text="pular a merda do login pq enche o saco" />
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/botao"
+                android:text="Prosseguir sem login"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
 
+                />
         </LinearLayout>
     </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/login_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone" />
+
 </LinearLayout>

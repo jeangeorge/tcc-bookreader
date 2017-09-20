@@ -199,13 +199,13 @@ public class CameraActivity extends AppCompatActivity {
 
                     Bitmap resized = Bitmap.createScaledBitmap(bitmap,(int)(bitmap.getWidth()*0.5), (int)(bitmap.getHeight()*0.5), true);
                     leitor.setImagem(resized);
-                    builder.setMessage("Esse é o texto ordenado: " + leitor.reconhecer())
+                    builder.setMessage("Esse é o texto ordenado, meu nome é Jean: " + leitor.LerImagem())
                             .setNegativeButton("OK", null)
                             .create()
                             .show();
 
 
-                    leitor.Ler();
+                   // leitor();
 
                     createCameraPreview();
                     if (image != null) {

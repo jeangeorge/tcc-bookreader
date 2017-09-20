@@ -15,6 +15,8 @@ import com.google.android.gms.vision.text.TextRecognizer;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
@@ -66,12 +68,13 @@ public class Leitor {
     }
 
     //Método que lê o que estiver na lista com a voz do narrador
-    public void LerImagem()
+    public String LerImagem()
     {
         Reconhecer();
         Ordenar();
         Corrigir();
         narrador.speak(getTexto(),TextToSpeech.QUEUE_FLUSH,null);
+        return (getTexto());
     }
 
     //Lê uma String
@@ -90,9 +93,21 @@ public class Leitor {
     //Nesse método todos os blocos de texto devem ser ordenados
     private void Ordenar()
     {
+        Collections.sort(blocos, new Comparator() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                TextBlock p1 = (TextBlock) o1;
+                TextBlock p2 = (TextBlock) o2;
 
+                return calculaDistancia(p1) < calculaDistancia(p2) ? -1 : (calculaDistancia(p1) > calculaDistancia(p1) ? +1 : 0);
+            }
+        });
+    }
 
-
+    private double calculaDistancia(TextBlock obj)
+    {
+        return Math.sqrt( Math.pow( (obj.getBoundingBox().left - 0),2 ) +
+                Math.pow( (obj.getBoundingBox().top - 0),2 ) );
     }
 
     //Esse método corrige o texto para posterior leitura
@@ -129,6 +144,7 @@ public class Leitor {
         {
             a+=blocos.get(i).getValue() + "\n";
         }
+
         return a;
     }
 

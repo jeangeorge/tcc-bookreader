@@ -18,8 +18,13 @@ tools:context="com.example.jean.bookreader.PDFReaderActivity">
     android:layout_alignParentBottom="true"
     android:layout_marginBottom="16dp"
     android:layout_marginTop="16dp"
+    android:layout_marginLeft="5dp"
     android:text="Anterior"
     android:onClick="Anterior"
+    style="?android:textAppearanceSmall"
+    android:background="@drawable/botao"
+    android:textColor="#FFFFFF"
+    android:textStyle="bold"
     />
     <Button
         android:id="@+id/proximo"
@@ -30,7 +35,13 @@ tools:context="com.example.jean.bookreader.PDFReaderActivity">
         android:layout_marginBottom="16dp"
         android:layout_marginTop="16dp"
         android:text="Proximo"
-        android:onClick="Proximo"/>
+        android:onClick="Proximo"
+        style="?android:textAppearanceSmall"
+        android:background="@drawable/botao"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:layout_marginRight="5dp"
+        />
     <Button
         android:id="@+id/pause"
         android:layout_width="wrap_content"
@@ -41,6 +52,10 @@ tools:context="com.example.jean.bookreader.PDFReaderActivity">
         android:layout_marginTop="16dp"
         android:text="Pause"
         android:onClick="Pause"
+        style="?android:textAppearanceSmall"
+        android:background="@drawable/botao"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
         />
 
 </RelativeLayout>
