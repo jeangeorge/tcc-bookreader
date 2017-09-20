@@ -32,29 +32,37 @@ public class ModuloPDF {
             //Abre o arquivo
             PdfRenderer renderer = new PdfRenderer(ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY));
 
-            if (paginaAtual > renderer.getPageCount()) {
-                paginaAtual = renderer.getPageCount() - 1;
-            }
-
+            //Pega a pagina atual
             PdfRenderer.Page pag = renderer.openPage(paginaAtual);
+
+            //Cria um bitmap do tamanho da pagina
             Bitmap bitmap = Bitmap.createBitmap(pag.getWidth(), pag.getHeight(), Bitmap.Config.ARGB_4444);
+
+            //Passa a página para a imagem
             pag.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    //Muda para a proxima pagina
     public void ProximaPagina()
     {
         if (paginaAtual < totalPaginas)
         {
             paginaAtual++;
+            Atualizar();
         }
 
     }
+
+    //Volta uma página
     public void VoltarPagina()
     {
-        if (paginaAtual > 0)
+        if (paginaAtual > 0) {
             paginaAtual--;
+            Atualizar();
+        }
     }
 
 
