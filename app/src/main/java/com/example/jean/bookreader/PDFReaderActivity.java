@@ -59,7 +59,7 @@ public class PDFReaderActivity extends AppCompatActivity {
         imageView.setImageBitmap(pdfReader.getImagem());
         leitor.setImagem(pdfReader.getImagem());
         leitor.LerImagem();
-    }
+    }//
     public void Anterior(View v)
     {
         leitor.Zerar();
