@@ -187,7 +187,7 @@ public class CameraActivity extends AppCompatActivity {
                     byte[] bytes = new byte[buffer.capacity()];
                     buffer.get(bytes);
                     Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-
+//
                     try {
                         leitor = new Leitor(getApplicationContext());
                     } catch (IOException e) {
