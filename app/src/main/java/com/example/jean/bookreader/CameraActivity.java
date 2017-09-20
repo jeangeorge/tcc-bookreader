@@ -36,6 +36,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -64,6 +65,7 @@ public class CameraActivity extends AppCompatActivity {
     private boolean mFlashSupported;
     private Handler mBackgroundHandler;
     private HandlerThread mBackgroundThread;
+    Leitor leitor = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -185,7 +187,12 @@ public class CameraActivity extends AppCompatActivity {
                     byte[] bytes = new byte[buffer.capacity()];
                     buffer.get(bytes);
                     Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                    Leitor leitor = new Leitor(getApplicationContext());
+
+                    try {
+                        leitor = new Leitor(getApplicationContext());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     leitor.setImagem(bitmap);
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(CameraActivity.this);
@@ -328,6 +335,9 @@ public class CameraActivity extends AppCompatActivity {
         Log.e(TAG, "onPause");
         closeCamera();
         stopBackgroundThread();
+        leitor.pararLeitura();
         super.onPause();
+
     }
+
 }

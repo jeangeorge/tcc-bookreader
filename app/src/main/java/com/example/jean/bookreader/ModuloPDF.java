@@ -25,6 +25,7 @@ public class ModuloPDF {
     public ModuloPDF(String path)
     {
         pathArquivo = path;
+        Atualizar();
     }
     //Atualiza a imagem de acordo com a página atual
     private void Atualizar() {
