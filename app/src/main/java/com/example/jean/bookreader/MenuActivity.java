@@ -34,5 +34,11 @@ public class MenuActivity extends AppCompatActivity  {
         Intent pdf = new Intent(this, PDFReaderActivity.class);
         startActivity(pdf);
     }
+
+    public void startAudioLivro(View v)
+    {
+        Intent audio = new Intent(this, AudioLivroActivity.class);
+        startActivity(audio);
+    }
 }
 

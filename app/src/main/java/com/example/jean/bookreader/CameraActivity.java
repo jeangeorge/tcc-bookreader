@@ -193,13 +193,17 @@ public class CameraActivity extends AppCompatActivity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    leitor.setImagem(bitmap);
+                   // leitor.setImagem(bitmap);
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(CameraActivity.this);
 
-                    Bitmap resized = Bitmap.createScaledBitmap(bitmap,(int)(bitmap.getWidth()*0.5), (int)(bitmap.getHeight()*0.5), true);
+                    Bitmap resized = Bitmap.createScaledBitmap(bitmap,(int)(bitmap.getWidth()*0.95), (int)(bitmap.getHeight()*0.95), true);
+                    bitmap.recycle();
+                    bitmap = null;
+
+
                     leitor.setImagem(resized);
-                    builder.setMessage("Esse é o texto ordenado, meu nome é Jean: " + leitor.LerImagem())
+                    builder.setMessage(leitor.LerImagem())
                             .setNegativeButton("OK", null)
                             .create()
                             .show();
@@ -336,6 +340,7 @@ public class CameraActivity extends AppCompatActivity {
         closeCamera();
         stopBackgroundThread();
         leitor.pararLeitura();
+
         super.onPause();
 
     }

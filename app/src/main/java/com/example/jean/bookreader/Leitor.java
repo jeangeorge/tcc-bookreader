@@ -99,16 +99,11 @@ public class Leitor {
                 TextBlock p1 = (TextBlock) o1;
                 TextBlock p2 = (TextBlock) o2;
 
-                return calculaDistancia(p1) < calculaDistancia(p2) ? -1 : (calculaDistancia(p1) > calculaDistancia(p1) ? +1 : 0);
+                return p1.getBoundingBox().top < p2.getBoundingBox().top ? -1 : (p1.getBoundingBox().top > p2.getBoundingBox().top ? +1 : 0);
             }
         });
     }
 
-    private double calculaDistancia(TextBlock obj)
-    {
-        return Math.sqrt( Math.pow( (obj.getBoundingBox().left - 0),2 ) +
-                Math.pow( (obj.getBoundingBox().top - 0),2 ) );
-    }
 
     //Esse método corrige o texto para posterior leitura
     private void Corrigir()
@@ -150,6 +145,7 @@ public class Leitor {
 
     public void pararLeitura()
     {
-        narrador.stop();
+        if(narrador.isSpeaking())
+            narrador.stop();
     }
 }

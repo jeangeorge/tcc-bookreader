@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+tools:context="com.example.jean.bookreader.AudioLivroActivity">
+<ImageView
+    android:id="@+id/imageViewAudio"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_above="@+id/anterior"
+    android:layout_alignParentTop="true"/>
+<Button
+    android:id="@+id/anteriorAudio"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_marginBottom="16dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginLeft="5dp"
+    android:text="Anterior"
+    android:onClick="Anterior"
+    style="?android:textAppearanceSmall"
+    android:background="@drawable/botao"
+    android:textColor="#FFFFFF"
+    android:textStyle="bold"
+    />
+<Button
+    android:id="@+id/proximoAudio"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentRight="true"
+    android:layout_marginBottom="16dp"
+    android:layout_marginTop="16dp"
+    android:text="Proximo"
+    android:onClick="Proximo"
+    style="?android:textAppearanceSmall"
+    android:background="@drawable/botao"
+    android:textColor="#FFFFFF"
+    android:textStyle="bold"
+    android:layout_marginRight="5dp"
+    />
+<Button
+    android:id="@+id/pauseAudio"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="true"
+    android:layout_marginBottom="16dp"
+    android:layout_marginTop="16dp"
+    android:text="Pause/Play"
+    android:onClick="Pause"
+    style="?android:textAppearanceSmall"
+    android:background="@drawable/botao"
+    android:textColor="#FFFFFF"
+    android:textStyle="bold"
+    />
+
+</RelativeLayout>
