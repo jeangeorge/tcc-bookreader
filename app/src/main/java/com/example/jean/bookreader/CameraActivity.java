@@ -2,6 +2,7 @@ package com.example.jean.bookreader;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -41,6 +42,8 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import com.example.jean.bookreader.MostraTextoActivity;
+
 public class CameraActivity extends AppCompatActivity {
 
     private static final String TAG = "AndroidCameraApi";
@@ -66,6 +69,8 @@ public class CameraActivity extends AppCompatActivity {
     private Handler mBackgroundHandler;
     private HandlerThread mBackgroundThread;
     Leitor leitor = null;
+    private String textoEscaneado = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +84,7 @@ public class CameraActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 takePicture();
+
 
             }
         });
@@ -175,7 +181,7 @@ public class CameraActivity extends AppCompatActivity {
             captureBuilder.set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_MODE_AUTO);
             // Orientation
             int rotation = getWindowManager().getDefaultDisplay().getRotation();
-           //
+            //
             captureBuilder.set(CaptureRequest.JPEG_ORIENTATION, ORIENTATIONS.get(rotation));
             final File file = new File(Environment.getExternalStorageDirectory()+"/pic.jpg");
             ImageReader.OnImageAvailableListener readerListener = new ImageReader.OnImageAvailableListener() {
@@ -193,7 +199,7 @@ public class CameraActivity extends AppCompatActivity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                   // leitor.setImagem(bitmap);
+                    // leitor.setImagem(bitmap);
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(CameraActivity.this);
 
@@ -205,11 +211,12 @@ public class CameraActivity extends AppCompatActivity {
                     leitor.setImagem(resized);
                     builder.setMessage(leitor.LerImagem())
                             .setNegativeButton("OK", null)
+                            .setNeutralButton("SALVAR",null)
                             .create()
                             .show();
 
 
-                   // leitor();
+                    // leitor();
 
                     createCameraPreview();
                     if (image != null) {
@@ -240,6 +247,8 @@ public class CameraActivity extends AppCompatActivity {
                 public void onConfigureFailed(CameraCaptureSession session) {
                 }
             }, mBackgroundHandler);
+            //closeCamera();
+
         } catch (CameraAccessException e) {
             e.printStackTrace();
         }
