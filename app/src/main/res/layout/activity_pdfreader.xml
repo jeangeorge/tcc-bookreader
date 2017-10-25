@@ -4,7 +4,9 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
-tools:context="com.example.jean.bookreader.PDFReaderActivity">
+    android:background="#FF0000"
+tools:context="com.example.jean.bookreader.PDFReaderActivity"
+    >
 <ImageView
     android:id="@+id/imageViewPDF"
     android:layout_width="match_parent"

@@ -2,7 +2,6 @@ package com.example.jean.bookreader;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -12,14 +11,14 @@ public class MenuActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        Intent intent = getIntent();
-        String name = intent.getStringExtra("name");
+        //Intent intent = getIntent();
+        //String name = intent.getStringExtra("name");
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(MenuActivity.this);
+        /*AlertDialog.Builder builder = new AlertDialog.Builder(MenuActivity.this);
         builder.setMessage("Bem vindo " + name + "!!")
                 .setNegativeButton("OK", null)
                 .create()
-                .show();
+                .show();*/
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }

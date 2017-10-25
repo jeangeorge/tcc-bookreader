@@ -27,7 +27,7 @@ import java.util.Locale;
 //Essa é a classe que lê, identifica e corrige o texto
 public class Leitor {
     //Imagem que vai ser reconhecida
-    public Bitmap imagem;
+    private Bitmap imagem;
 
     //Objeto que faz o reconhecimento do texto
     private TextRecognizer teste;
@@ -36,9 +36,10 @@ public class Leitor {
     private TextToSpeech narrador;
 
     //Lista de blocos de texto
-    List<TextBlock> blocos;
+    private List<TextBlock> blocos;
 
-    List<String> blocosProntos;
+    //Blocos de texto prontos depois do tratamento
+    private List<String> blocosProntos;
 
     public void setImagem(Bitmap imagem)
     {
@@ -89,6 +90,10 @@ public class Leitor {
     {
         blocos.clear();
     }
+    public Bitmap getImagem()
+    {
+        return imagem;
+    }
 
     //Nesse método todos os blocos de texto devem ser ordenados
     private void Ordenar()
@@ -111,7 +116,7 @@ public class Leitor {
 
     }
 
-
+    //Reconhece o texto que esta em uma imagem e armazena nos blocos
     public void Reconhecer()
     {
         Frame outputFrame = new Frame.Builder().setBitmap(imagem).build();
@@ -130,7 +135,7 @@ public class Leitor {
         }
     }
 
-
+    //Retorna o texto que foi reconheci
     public String getTexto()
     {
         Ordenar();
@@ -147,5 +152,10 @@ public class Leitor {
     {
         if(narrador.isSpeaking())
             narrador.stop();
+    }
+
+    public boolean estaLendo()
+    {
+        return narrador.isSpeaking();
     }
 }

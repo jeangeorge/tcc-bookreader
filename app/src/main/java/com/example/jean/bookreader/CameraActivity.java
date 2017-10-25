@@ -2,7 +2,6 @@ package com.example.jean.bookreader;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -42,12 +41,14 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import com.example.jean.bookreader.MostraTextoActivity;
 
 public class CameraActivity extends AppCompatActivity {
 
     private static final String TAG = "AndroidCameraApi";
+    //Botão de tirar a foto
     private Button takePictureButton;
+
+    //View onde a imagem da câmera vai aparecer
     private TextureView textureView;
     private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
     static {
@@ -56,20 +57,47 @@ public class CameraActivity extends AppCompatActivity {
         ORIENTATIONS.append(Surface.ROTATION_180, 270);
         ORIENTATIONS.append(Surface.ROTATION_270, 180);
     }
+
     private String cameraId;
+
+    //Objeto da camera
     protected CameraDevice cameraDevice;
+
+    //Objeto de captura de sessão
     protected CameraCaptureSession cameraCaptureSessions;
+
+    //Pedido de captura de imagem
     protected CaptureRequest captureRequest;
+
+
     protected CaptureRequest.Builder captureRequestBuilder;
+
+    //Dimensões da imagem
     private Size imageDimension;
+
+    //Leitor de imagem
     private ImageReader imageReader;
+
+    //Arquivo que vai armazenar imagem
     private File file;
+
+    //Número da requisição da câmera
     private static final int REQUEST_CAMERA_PERMISSION = 200;
+
+    //Indica se o celular possui flash
     private boolean mFlashSupported;
+
+
     private Handler mBackgroundHandler;
+
+    //Trhead que atualiza o frame do TextureView
     private HandlerThread mBackgroundThread;
+
+    //Objeto do leitor
     Leitor leitor = null;
-    private String textoEscaneado = null;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +105,8 @@ public class CameraActivity extends AppCompatActivity {
         setContentView(R.layout.activity_camera);
         textureView = (TextureView) findViewById(R.id.texture);
         assert textureView != null;
+
+        //Adiciona o listener ao textureview
         textureView.setSurfaceTextureListener(textureListener);
         takePictureButton = (Button) findViewById(R.id.btn_takepicture);
         assert takePictureButton != null;
@@ -88,12 +118,18 @@ public class CameraActivity extends AppCompatActivity {
 
             }
         });
+        try {
+            leitor = new Leitor(getApplicationContext());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
     TextureView.SurfaceTextureListener textureListener = new TextureView.SurfaceTextureListener() {
         @Override
         public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
-            //open your camera here
+            //Abrir a câmera
+
             openCamera();
         }
         @Override
@@ -114,7 +150,7 @@ public class CameraActivity extends AppCompatActivity {
 
         @Override
         public void onOpened(CameraDevice camera) {
-            //This is called when the camera is open
+            //Metodo chamado quando a câmera é aberta
             Log.e(TAG, "onOpened");
             cameraDevice = camera;
             createCameraPreview();
@@ -123,6 +159,7 @@ public class CameraActivity extends AppCompatActivity {
         public void onDisconnected(CameraDevice camera) {
             cameraDevice.close();
         }
+
         @Override
         public void onError(CameraDevice camera, int error) {
             cameraDevice.close();
@@ -194,16 +231,12 @@ public class CameraActivity extends AppCompatActivity {
                     buffer.get(bytes);
                     Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
 
-                    try {
-                        leitor = new Leitor(getApplicationContext());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+
                     // leitor.setImagem(bitmap);
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(CameraActivity.this);
 
-                    Bitmap resized = Bitmap.createScaledBitmap(bitmap,(int)(bitmap.getWidth()*0.95), (int)(bitmap.getHeight()*0.95), true);
+                    Bitmap resized = Bitmap.createScaledBitmap(bitmap,(int)(bitmap.getWidth()*0.5), (int)(bitmap.getHeight()*0.5), true);
                     bitmap.recycle();
                     bitmap = null;
 
@@ -214,15 +247,10 @@ public class CameraActivity extends AppCompatActivity {
                             .setNeutralButton("SALVAR",null)
                             .create()
                             .show();
-
-
-                    // leitor();
-
                     createCameraPreview();
                     if (image != null) {
                         image.close();
                     }
-
                 }
             };
             reader.setOnImageAvailableListener(readerListener, mBackgroundHandler);
@@ -232,6 +260,7 @@ public class CameraActivity extends AppCompatActivity {
                 public void onCaptureCompleted(CameraCaptureSession session, CaptureRequest request, TotalCaptureResult result) {
                     super.onCaptureCompleted(session, request, result);
                     Toast.makeText(CameraActivity.this, "Saved:" + file, Toast.LENGTH_SHORT).show();
+
                 }
             };
             cameraDevice.createCaptureSession(outputSurfaces, new CameraCaptureSession.StateCallback() {
@@ -264,11 +293,11 @@ public class CameraActivity extends AppCompatActivity {
             cameraDevice.createCaptureSession(Arrays.asList(surface), new CameraCaptureSession.StateCallback(){
                 @Override
                 public void onConfigured(@NonNull CameraCaptureSession cameraCaptureSession) {
-                    //The camera is already closed
+                    //Se a câmera estiver fechada
                     if (null == cameraDevice) {
                         return;
                     }
-                    // When the session is ready, we start displaying the preview.
+                    //Quando
                     cameraCaptureSessions = cameraCaptureSession;
                     updatePreview();
                 }
@@ -349,9 +378,13 @@ public class CameraActivity extends AppCompatActivity {
         closeCamera();
         stopBackgroundThread();
         leitor.pararLeitura();
-
+        //textureView.re
         super.onPause();
 
+
     }
+
+
+
 
 }

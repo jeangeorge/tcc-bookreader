@@ -57,7 +57,8 @@
         <activity android:name=".LivrosActivity" />
         <activity android:name=".MostraTextoActivity" />
         <activity android:name=".PaginasActivity" />
-        <activity android:name=".AdicionarLivroActivity"></activity>
+        <activity android:name=".AdicionarLivroActivity" />
+        <activity android:name=".MenuCameraActivity"></activity>
     </application>
 
 </manifest>
