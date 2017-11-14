@@ -73,8 +73,11 @@ public class UsuarioRepositorio {
     public List<Usuario> buscarUsuario(String filtro)
     {
         SQLiteDatabase db = helper.getReadableDatabase();
+
         String sql = "SELECT * FROM " + TabelaUsuario.TABELA_NOME;
+
         String [] argumentos = null;
+        
         if(filtro != null)
         {
             sql += " WHERE " + TabelaUsuario.COLUNA_NOME + " LIKE ?";
