@@ -103,4 +103,33 @@ public class LivroRepositorio {
         return 0;
     }
 
+    public List<Livro> buscarLivros(String filtro)
+    {
+        SQLiteDatabase db = helper.getReadableDatabase();
+
+        String sql = "SELECT * FROM " + TabelaLivros.TABELA_NOME;
+
+        String [] argumentos = null;
+
+        if(filtro != null)
+        {
+            sql += " WHERE " + TabelaLivros.COLUNA_NOME + " = ?";
+            argumentos = new String[]{filtro};
+        }
+        Cursor cursor = db.rawQuery(sql, argumentos);
+        List<Livro> livros = new ArrayList<Livro>();
+        while(cursor.moveToNext())
+        {
+            long id = cursor.getLong(cursor.getColumnIndex(TabelaLivros.COLUNA_ID));
+            String nome = cursor.getString(cursor.getColumnIndex(TabelaLivros.COLUNA_NOME));
+            Livro usuario = new Livro(id, nome);
+            livros.add(usuario);
+        }
+        cursor.close();
+        db.close();
+        return livros;
+    }
+
+
+
 }

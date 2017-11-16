@@ -34,6 +34,9 @@ import android.widget.TextView;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.example.jean.bookreader.BD.Usuario;
+import com.example.jean.bookreader.BD.UsuarioRepositorio;
+import com.example.jean.bookreader.BD.UsuarioSingleton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -364,6 +367,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
                             intent.putExtra("name", name);
                             intent.putExtra("username", username);
+
+                            UsuarioRepositorio usuarioRepositorio = new UsuarioRepositorio(getApplicationContext());
+                            Usuario usuario = new Usuario(name, username, password);
+                            UsuarioSingleton sing = new UsuarioSingleton(usuario);
+                            usuarioRepositorio.salvar(usuario);
                             LoginActivity.this.startActivity(intent);
                         } else {
                             AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);

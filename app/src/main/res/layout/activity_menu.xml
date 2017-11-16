@@ -147,7 +147,8 @@
                 android:text="Acessar os livros escaneados"
                 android:textColor="#000"
                 android:textSize="30sp"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:onClick="startListaDeLivros"/>
 
 
         </LinearLayout>

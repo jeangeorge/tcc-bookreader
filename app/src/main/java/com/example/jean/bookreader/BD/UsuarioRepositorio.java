@@ -77,7 +77,7 @@ public class UsuarioRepositorio {
         String sql = "SELECT * FROM " + TabelaUsuario.TABELA_NOME;
 
         String [] argumentos = null;
-        
+
         if(filtro != null)
         {
             sql += " WHERE " + TabelaUsuario.COLUNA_NOME + " LIKE ?";
