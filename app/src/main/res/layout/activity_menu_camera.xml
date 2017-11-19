@@ -52,7 +52,7 @@
         android:text="Escanear para ouvir mais tarde"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
-        android:onClick="abrirLeitor"
+        android:onClick="abrirScanner"
         android:gravity="center"
         android:textSize="40dp"
         android:layout_marginBottom="10dp"/>
