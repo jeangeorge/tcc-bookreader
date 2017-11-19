@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Digite o nome do livro " />
+        android:text="Digite aqui o nome do livro " />
 
     <EditText
         android:id="@+id/editText2"
