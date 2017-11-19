@@ -59,6 +59,7 @@
         <activity android:name=".MenuCameraActivity" />
         <activity android:name=".ScaneiaLivroActivity" />
         <activity android:name=".MenuScannerActivity" />
+        <activity android:name=".PlayerActivity"></activity>
     </application>
 
 </manifest>

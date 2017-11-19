@@ -1,44 +1,50 @@
 package com.example.jean.bookreader;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
-import java.io.File;
-import java.io.IOException;
-
 public class AudioLivroActivity extends AppCompatActivity {
     MediaPlayer mp;
+    ImageView botao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_audio_livro);
-        mp = new MediaPlayer();
-        File arq = getApplicationContext().getFileStreamPath("audiolivro.mp3");
-        try {
-            mp.setDataSource(arq.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        botao = (ImageView) findViewById(R.id.play_pause_audio);
+
+        mp = MediaPlayer.create(AudioLivroActivity.this, R.raw.audiolivro);
+
         ImageView imageView = (ImageView) findViewById(R.id.imageViewAudio);
 
-        Bitmap bitmap = null;
-        File filePath = getApplicationContext().getFileStreamPath("thumb.jpg");
+        imageView.setImageResource(R.drawable.thumb);
 
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 
-        bitmap = BitmapFactory.decodeFile(filePath.toString());
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.release();
+                botao.setImageResource(R.drawable.ic_action_pause_over_video);
+            }
 
-
-        imageView.setImageBitmap(bitmap);
+        });
     }
 
     public void Pause(View v)
     {
-        mp.start();
+        if(mp.isPlaying())
+        {
+            mp.pause();
+            botao.setImageResource(R.drawable.ic_action_play_over_video);
+        }
+        else
+        {
+            mp.start();
+            botao.setImageResource(R.drawable.ic_action_pause_over_video);
+        }
     }
     public void Proximo(View v)
     {

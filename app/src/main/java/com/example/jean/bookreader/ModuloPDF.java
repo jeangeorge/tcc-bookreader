@@ -58,6 +58,7 @@ public class ModuloPDF {
 
             imagem = tirarTransparencia(bitmap);
 
+
         } catch (Exception e) {
             e.printStackTrace();
         }

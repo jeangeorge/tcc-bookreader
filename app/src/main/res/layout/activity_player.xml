@@ -4,20 +4,21 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
-    android:background="#000000"
-tools:context="com.example.jean.bookreader.AudioLivroActivity">
-    <ImageView
-        android:id="@+id/imageViewAudio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/anterior"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="10dp" />
+android:background="#000000"
+tools:context="com.example.jean.bookreader.PDFReaderActivity"
+    >
+<ImageView
+    android:id="@+id/imageViewPDF"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_above="@+id/anterior"
+    android:layout_alignParentStart="true"
+    android:layout_marginBottom="10dp" />
 
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:id="@+id/play_pause_audio"
+        android:id="@+id/vlc_button_play_pause"
         android:src="@drawable/ic_action_pause_over_video"
         android:contentDescription="Play"
         android:layout_alignParentBottom="true"
@@ -44,13 +45,12 @@ tools:context="com.example.jean.bookreader.AudioLivroActivity">
         android:layout_height="50dp"
         android:id="@+id/anterior"
         android:src="@drawable/previous"
-        android:contentDescription="Anterior"
+        android:contentDescription="Proximo"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="38dp"
         android:layout_marginLeft="64dp"
-        android:text="Anterior"
-        android:onClick="Anterior"/>
-
+        android:text="Proximo"
+        android:onClick="Proximo"/>
 </RelativeLayout>

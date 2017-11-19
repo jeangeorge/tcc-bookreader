@@ -22,6 +22,7 @@
         completions."
     </string>
     <string name="menu_string">Sobre</string>
+    <string name="sair_string">Sair</string>
     <string name="cadastrar">cadastrar</string>
     <string name="title_activity_cadastro">Cadastro</string>
     <string name="title_activity_user">UserActivity</string>

@@ -33,7 +33,7 @@ public class Leitor {
     private TextRecognizer teste;
 
     //Objeto que le o texto com uma voz sintetizada
-    private TextToSpeech narrador;
+    public TextToSpeech narrador;
 
     //Lista de blocos de texto
     private List<TextBlock> blocos;
@@ -65,7 +65,6 @@ public class Leitor {
                 }
             }
         });
-
     }
 
     //Método que lê o que estiver na lista com a voz do narrador

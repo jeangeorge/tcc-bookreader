@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.speech.tts.UtteranceProgressListener;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import java.io.IOException;
-class PlayerThread implements Runnable
+/*class PlayerThread implements Runnable
 {
     Leitor leitor;
 
@@ -53,11 +54,11 @@ class PlayerThread implements Runnable
             }
         }
     }
-}
+}*/
 public class PDFReaderActivity extends AppCompatActivity{
     final int REQUEST_PDF = 1;
 
-    PlayerThread player;
+    //PlayerThread player;
 
     Leitor leitor;
 
@@ -67,7 +68,8 @@ public class PDFReaderActivity extends AppCompatActivity{
     //Mostra a imagem da página atual do pdf
     ImageView imageView;
 
-    Thread thread;
+    ImageView botao;
+    //Thread thread;
     int paginaAtual;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +80,7 @@ public class PDFReaderActivity extends AppCompatActivity{
         selectPdf();
 
         imageView = (ImageView) findViewById(R.id.imageViewPDF);
+        botao = (ImageView) findViewById(R.id.vlc_button_play_pauseplay);
 
         try {
             leitor = new Leitor(getApplicationContext());
@@ -88,8 +91,25 @@ public class PDFReaderActivity extends AppCompatActivity{
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                 1);
-        player = new PlayerThread(leitor, pdfReader,this);
-        thread = new Thread(player);
+        System.out.println("Antes de definir");
+        leitor.narrador.setOnUtteranceProgressListener(new UtteranceProgressListener() {
+            @Override
+            public void onStart(String utteranceId) {
+                System.out.println("Start");
+            }
+
+            @Override
+            public void onDone(String utteranceId) {
+                System.out.println("Done");
+            }
+
+            @Override
+            public void onError(String utteranceId) {
+
+            }
+        });
+       // player = new PlayerThread(leitor, pdfReader,this);
+        //thread = new Thread(player);
         //thread.start()
     }
 
@@ -124,10 +144,10 @@ public class PDFReaderActivity extends AppCompatActivity{
 
             paginaAtual = pdfReader.getPaginaAtual();
 
-            thread.start();
+            //thread.start();
         }
     }
-    public void Proximo(View v)
+    private void Proximo()
     {
         leitor.pararLeitura();
 
@@ -141,12 +161,9 @@ public class PDFReaderActivity extends AppCompatActivity{
 
         AlertDialog.Builder a = new AlertDialog.Builder(PDFReaderActivity.this);
 
-        a.setMessage(leitor.LerImagem())
-                .setNegativeButton("Ok",null)
-                .create()
-                .show();
+        leitor.LerImagem();
     }
-    public void Anterior(View v)
+    private void Anterior()
     {
         leitor.pararLeitura();
 
@@ -160,19 +177,31 @@ public class PDFReaderActivity extends AppCompatActivity{
 
         AlertDialog.Builder a = new AlertDialog.Builder(PDFReaderActivity.this);
 
-        a.setMessage(leitor.LerImagem())
-                .setNegativeButton("Ok",null)
-                .create()
-                .show();
-
-       // leitor.LerImagem();
+        leitor.LerImagem();
+    }
+    public void Proximo(View v)
+    {
+        Proximo();
+    }
+    public void Anterior(View v)
+    {
+        Anterior();
     }
 
     public void Pause(View v)
     {
-        player.setPausado(!player.getPausado());
-        if(leitor.estaLendo())leitor.pararLeitura();
-        else leitor.LerImagem();
+        //player.setPausado(!player.getPausado());
+        if(leitor.estaLendo())
+        {
+            leitor.pararLeitura();
+            botao.setImageResource(R.drawable.ic_action_play_over_video);
+        }
+        else
+        {
+            leitor.Zerar();
+            leitor.LerImagem();
+            botao.setImageResource(R.drawable.ic_action_pause_over_video);
+        }
 
     }
     @Override
@@ -180,8 +209,7 @@ public class PDFReaderActivity extends AppCompatActivity{
         super.onStop();
         leitor.pararLeitura();
     }
-    public void teste()
-    {
+/*    {
         leitor.pararLeitura();
 
         leitor.Zerar();
@@ -199,7 +227,7 @@ public class PDFReaderActivity extends AppCompatActivity{
                 .create()
                 .show();
     }
-
+*/
 
 
 

@@ -15,4 +15,9 @@ public class UsuarioSingleton {
      {
          return usuario;
      }
+
+     public static void Sair()
+     {
+         usuario = null;
+     }
 }
