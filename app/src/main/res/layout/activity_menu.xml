@@ -24,7 +24,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="35dp"/>
+            android:layout_marginBottom="5dp"/>
 
 
 
@@ -135,7 +135,7 @@
             <ImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/icone_audiobook"
+                android:src="@drawable/icone_acessar"
                 android:paddingLeft="5dp"
                 android:layout_gravity="center"/>
 
@@ -144,7 +144,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="5dp"
-                android:text="Acessar os livros escaneados"
+                android:text="Acessar os livros salvos"
                 android:textColor="#000"
                 android:textSize="30sp"
                 android:layout_gravity="center"

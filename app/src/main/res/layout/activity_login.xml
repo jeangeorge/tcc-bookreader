@@ -51,7 +51,7 @@
 
                     <AutoCompleteTextView
                         android:id="@+id/email"
-                        android:layout_width="250dp"
+                        android:layout_width="280dp"
                         android:layout_height="35dp"
                         android:layout_marginLeft="5dp"
                         android:background="@drawable/edittext"
@@ -83,7 +83,7 @@
 
                     <EditText
                         android:id="@+id/password"
-                        android:layout_width="250dp"
+                        android:layout_width="280dp"
                         android:layout_height="35dp"
                         android:layout_marginLeft="5dp"
                         android:background="@drawable/edittext"
@@ -100,8 +100,7 @@
 
             <Button
                 android:id="@+id/email_sign_in_button"
-                style="?android:textAppearanceSmall"
-                android:layout_width="200dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@drawable/botao"
@@ -114,7 +113,7 @@
             <Button
                 android:id="@+id/cadastrar"
                 style="?android:textAppearanceSmall"
-                android:layout_width="200dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
@@ -130,7 +129,7 @@
             <Button
                 android:id="@+id/button3"
                 style="?android:textAppearanceSmall"
-                android:layout_width="200dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
