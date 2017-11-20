@@ -24,7 +24,6 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.Size;
@@ -108,9 +107,8 @@ public class CameraActivity extends AppCompatActivity {
 
         //Adiciona o listener ao textureview
         textureView.setSurfaceTextureListener(textureListener);
-        takePictureButton = (Button) findViewById(R.id.btn_takepicture);
         assert takePictureButton != null;
-        takePictureButton.setOnClickListener(new View.OnClickListener() {
+        textureView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 takePicture();
@@ -172,7 +170,6 @@ public class CameraActivity extends AppCompatActivity {
         @Override
         public void onCaptureCompleted(CameraCaptureSession session, CaptureRequest request, TotalCaptureResult result) {
             super.onCaptureCompleted(session, request, result);
-            Toast.makeText(CameraActivity.this, "Saved:" + file, Toast.LENGTH_SHORT).show();
             createCameraPreview();
         }
     };
@@ -234,7 +231,7 @@ public class CameraActivity extends AppCompatActivity {
 
                     // leitor.setImagem(bitmap);
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(CameraActivity.this);
+
 
                     Bitmap resized = Bitmap.createScaledBitmap(bitmap,(int)(bitmap.getWidth()*0.5), (int)(bitmap.getHeight()*0.5), true);
                     bitmap.recycle();
@@ -242,11 +239,7 @@ public class CameraActivity extends AppCompatActivity {
 
 
                     leitor.setImagem(resized);
-                    builder.setMessage(leitor.LerImagem())
-                            .setNegativeButton("OK", null)
-                            .setNeutralButton("SALVAR",null)
-                            .create()
-                            .show();
+                    leitor.LerImagem();
                     createCameraPreview();
                     if (image != null) {
                         image.close();
@@ -259,7 +252,6 @@ public class CameraActivity extends AppCompatActivity {
                 @Override
                 public void onCaptureCompleted(CameraCaptureSession session, CaptureRequest request, TotalCaptureResult result) {
                     super.onCaptureCompleted(session, request, result);
-                    Toast.makeText(CameraActivity.this, "Saved:" + file, Toast.LENGTH_SHORT).show();
 
                 }
             };
@@ -276,8 +268,6 @@ public class CameraActivity extends AppCompatActivity {
                 public void onConfigureFailed(CameraCaptureSession session) {
                 }
             }, mBackgroundHandler);
-            //closeCamera();
-
         } catch (CameraAccessException e) {
             e.printStackTrace();
         }
@@ -356,7 +346,7 @@ public class CameraActivity extends AppCompatActivity {
         if (requestCode == REQUEST_CAMERA_PERMISSION) {
             if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
                 // close the app
-                Toast.makeText(CameraActivity.this, "Sorry!!!, you can't use this app without granting permission", Toast.LENGTH_LONG).show();
+                Toast.makeText(CameraActivity.this, "Você não pode usar a câmera se não fornecer permissão pro APP acessá-la", Toast.LENGTH_LONG).show();
                 finish();
             }
         }
@@ -364,7 +354,6 @@ public class CameraActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.e(TAG, "onResume");
         startBackgroundThread();
         if (textureView.isAvailable()) {
             openCamera();
@@ -378,7 +367,6 @@ public class CameraActivity extends AppCompatActivity {
         closeCamera();
         stopBackgroundThread();
         leitor.pararLeitura();
-        //textureView.re
         super.onPause();
 
 

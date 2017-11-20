@@ -53,7 +53,7 @@ public class LivroRepositorio {
         return null;
     }
 
-    public List<Pagina> getPaginas(int idLivro)
+    public List<Pagina> getPaginas(long idLivro)
     {
         SQLiteDatabase db = helper.getReadableDatabase();
         String sql = "SELECT * FROM " + TabelaPagina.TABELA_NOME;
@@ -68,9 +68,9 @@ public class LivroRepositorio {
         List<Pagina> paginas = new ArrayList<Pagina>();
         while(cursor.moveToNext())
         {
-            long id = cursor.getLong(cursor.getColumnIndex(TabelaUsuario.COLUNA_ID));
+            long id = cursor.getLong(cursor.getColumnIndex(TabelaPagina.COLUNA_ID));
             //long idLivro = cursor.getLong(cursor.getColumnIndex(TabelaUsuario.COLUNA_ID));
-            String conteudo = cursor.getString(cursor.getColumnIndex(TabelaUsuario.COLUNA_NOME));
+            String conteudo = cursor.getString(cursor.getColumnIndex(TabelaPagina.COLUNA_CONTEUDO));
 
             Pagina pagina = new Pagina(id, idLivro, conteudo);
 

@@ -6,6 +6,12 @@ package com.example.jean.bookreader.BD;
 
 public class Pagina {
     public long ID;
+
+    public Pagina(long idLivro, String conteudo) {
+        IdLivro = idLivro;
+        this.conteudo = conteudo;
+    }
+
     public long IdLivro;
     public String conteudo;
     public int numeroDaPagina;

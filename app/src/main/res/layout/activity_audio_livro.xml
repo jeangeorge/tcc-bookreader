@@ -52,5 +52,4 @@ tools:context="com.example.jean.bookreader.AudioLivroActivity">
         android:layout_marginLeft="64dp"
         android:text="Anterior"
         android:onClick="Anterior"/>
-
 </RelativeLayout>

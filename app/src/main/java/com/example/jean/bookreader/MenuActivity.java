@@ -124,7 +124,7 @@ public class MenuActivity extends AppCompatActivity  {
 
     public void startListaDeLivros(View v)
     {
-        Intent audio = new Intent(this, LivrosActivity.class);
+        Intent audio = new Intent(this, PlayerLivroActivity.class);
         startActivity(audio);
     }
 }

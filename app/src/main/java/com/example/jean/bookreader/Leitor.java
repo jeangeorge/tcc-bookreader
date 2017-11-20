@@ -70,6 +70,7 @@ public class Leitor {
     //Método que lê o que estiver na lista com a voz do narrador
     public String LerImagem()
     {
+        Zerar();
         Reconhecer();
         Ordenar();
         Corrigir();
@@ -77,6 +78,14 @@ public class Leitor {
         return (getTexto());
     }
 
+    public String imagemToString()
+    {
+        Zerar();
+        Reconhecer();
+        Ordenar();
+        Corrigir();
+        return getTexto();
+    }
     //Lê uma String
     public void Ler(String palavra)
     {

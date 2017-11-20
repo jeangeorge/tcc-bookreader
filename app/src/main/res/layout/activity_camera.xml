@@ -13,17 +13,5 @@
     android:layout_alignParentStart="true" />
 
 
-    <Button
-        android:id="@+id/btn_takepicture"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:layout_marginLeft="5dp"
-        android:text="Tirar foto"
-        style="?android:textAppearanceSmall"
-        android:background="@drawable/botao"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

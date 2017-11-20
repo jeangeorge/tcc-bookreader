@@ -2,6 +2,8 @@ package com.example.jean.bookreader;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -35,6 +37,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.jean.bookreader.BD.Livro;
+import com.example.jean.bookreader.BD.LivroRepositorio;
+import com.example.jean.bookreader.BD.Pagina;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -43,6 +49,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ScaneiaLivroActivity extends AppCompatActivity {
+    Livro livro;
+    LivroRepositorio repositorio;
 
     private static final String TAG = "AndroidCameraApi";
     //Botão de tirar a foto
@@ -106,11 +114,23 @@ public class ScaneiaLivroActivity extends AppCompatActivity {
         textureView = (TextureView) findViewById(R.id.texture);
         assert textureView != null;
 
+        Intent intent = getIntent();
+        int id = intent.getExtras().getInt("idLivro");
+        String nome = intent.getExtras().getString("nomeLivro");
+
+        AlertDialog.Builder mensagem = new AlertDialog.Builder(ScaneiaLivroActivity.this);
+        mensagem.setMessage("Id " + id + ", Nome: " + nome)
+                .setNegativeButton("Ok", null)
+                .create()
+                .show();
+
+        livro = new Livro(id, nome);
+        repositorio = new LivroRepositorio(getApplicationContext());
         //Adiciona o listener ao textureview
         textureView.setSurfaceTextureListener(textureListener);
-        takePictureButton = (Button) findViewById(R.id.btn_takepicture);
+        //takePictureButton = (Button) findViewById(R.id.btn_takepicture);
         assert takePictureButton != null;
-        takePictureButton.setOnClickListener(new View.OnClickListener() {
+        textureView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 takePicture();
@@ -242,11 +262,20 @@ public class ScaneiaLivroActivity extends AppCompatActivity {
 
 
                     leitor.setImagem(resized);
-                    builder.setMessage(leitor.LerImagem())
-                            .setNegativeButton("OK", null)
-                            .setNeutralButton("SALVAR",null)
+                    leitor.imagemToString();
+
+                    builder.setMessage("O texto escaneado foi: " + leitor.getTexto())
+                            .setNegativeButton("Escanear novamente", null)
+                            .setNeutralButton("Salvar", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Pagina pagina = new Pagina(livro.ID, leitor.getTexto());
+                                    repositorio.novaPagina(pagina, livro);
+                                }
+                            })
                             .create()
                             .show();
+
                     createCameraPreview();
                     if (image != null) {
                         image.close();

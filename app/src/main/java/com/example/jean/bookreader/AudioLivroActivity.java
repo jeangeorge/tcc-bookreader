@@ -29,7 +29,6 @@ public class AudioLivroActivity extends AppCompatActivity {
                 mp.release();
                 botao.setImageResource(R.drawable.ic_action_pause_over_video);
             }
-
         });
     }
 

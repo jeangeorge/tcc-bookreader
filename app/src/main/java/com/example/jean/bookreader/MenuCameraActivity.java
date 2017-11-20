@@ -25,4 +25,13 @@ public class MenuCameraActivity extends AppCompatActivity {
     }
 
 
+
+
+    public void abrirArquivos(View v)
+    {
+        Intent camera = new Intent(this, SelecionaArquivoActivity.class);
+        startActivity(camera);
+    }
+
+
 }
